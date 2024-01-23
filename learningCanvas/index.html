@@ -18,9 +18,28 @@
   
 </head>
 <body>
-  <canvas id="tutorial" width="500" height="500">sample text</canvas>
+  
+  <div class="wrapperAllThreeWatches flex flex-column">
+    <div>
+      <div>
+        <div>Minutes</div>
+        <canvas id="canvasMinutesClock" width="150" height="150">canvasMinutesClock</canvas>
+      </div>
+      <div>
+        <div>Seconds</div>
+        <canvas id="canvasSecondsClock" width="125" height="125">canvasSecondsClock</canvas>
+      </div>
+    </div>
+    <div>
+      <div>Milliseconds</div>
+      <canvas id="canvasMillisecondsClock" width="100" height="100">canvasMillisecondsClock</canvas>
+    </div>
+  </div>
 
 
+  <button id="stop">STOP</button>
+
+  <script src="view.js"> </script>
   <script src="index.js"> </script>
 </body>
 </html>

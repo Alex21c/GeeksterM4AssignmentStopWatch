@@ -19,6 +19,29 @@
 </head>
 <body class="bg-slate-500 mt-5 mb-20">
   <h1 id='topHeading' class="text-center  text-zinc-50"><span class="font-semibold text-5xl" style="font-variant: small-caps;">StopWatch Assignment</span> <a href="https://www.geekster.in/full-stack-web-development-program" class="text-2xl">(<span class="underline">Geekster MERN Stack Module #4</span>)</a></h1>
+  
+  <div class="wrapperAllThreeWatches flex gap-5 items-center pl-5">
+      <div>
+        <h2 class="font-medium text-center text-slate-100">Hours</h2>
+        <canvas id="canvasHoursClock" width="100" height="100">canvasHoursClock</canvas>
+      </div>
+      <div>
+        <h2 class="font-medium text-center text-slate-100">Minutes</h2>
+        <canvas id="canvasMinutesClock" width="90" height="90">canvasMinutesClock</canvas>
+      </div>
+      <div>
+        <h2 class="font-medium text-center text-slate-100">Seconds</h2>
+        <canvas id="canvasSecondsClock" width="80" height="80">canvasSecondsClock</canvas>
+      </div>
+      <div>
+        <h2 class="font-medium text-center text-slate-100">Milliseconds</h2>
+        <canvas id="canvasMillisecondsClock" width="70" height="70">canvasMillisecondsClock</canvas>
+      </div>
+    
+  </div>
+
+
+  <button id="stop">STOP</button>
 
   <script src="View.js"> </script>
   <script src="Model.js"> </script>
