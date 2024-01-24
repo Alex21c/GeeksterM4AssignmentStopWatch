@@ -4,6 +4,7 @@
 
 # Tech. Stack Used:
 + [MVC Framework](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
++ [HTML5 Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
 + [HTML5](https://en.wikipedia.org/wiki/HTML5)
 + [CSS3](https://en.wikipedia.org/wiki/CSS)
 + [Tailwind CSS](https://tailwindcss.com/)
