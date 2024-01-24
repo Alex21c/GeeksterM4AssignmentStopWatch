@@ -1,6 +1,8 @@
 'use strict';
 class View{
+
   constructor(){
+    
     this.metadata={
       color:{
         tickMinutes: 'rgb(71 85 105)', 
@@ -46,9 +48,9 @@ class View{
           x: 7
         },  
         text:{
-          fontSize: '1rem',
-          x : 12,
-          y : 20
+          fontSize: '1.5rem',
+          x : 15,
+          y : 25
         },
       },
       canvasMillisecondsClock:{
@@ -60,28 +62,44 @@ class View{
           x: 10
         },  
         text:{
-          fontSize: '1rem',
-          x : 15,
-          y : 17
+          fontSize: '1.3rem',
+          x : 20,
+          y : 25
         },
       },
     }
 
+  // fetching DOM 
     this.canvasMillisecondsClock = document.querySelector('canvas#canvasMillisecondsClock');
     this.canvasSecondsClock = document.querySelector('canvas#canvasSecondsClock');
     this.canvasMinutesClock = document.querySelector('canvas#canvasMinutesClock');
-    this.canvasHoursClock = document.querySelector('canvas#canvasHoursClock');
+    this.canvasHoursClock = document.querySelector('canvas#canvasHoursClock');    
+
+  // initially drawing on screen the stop watches
+    this.drawStopWatchInitialState();
+
+  // Keeping track of interval IDs     
+    this.intervalsIDs ={
+      canvasMillisecondsClock:null,
+      canvasSecondsClock:null,
+      canvasMinutesClock:null,
+      canvasHoursClock:null,
+    };
+
+    // Bind the methods to the instance || otherwise when controller is calling View Methods, view methods are unable to access contructor metadata
+      this.startStopWatch = this.startStopWatch.bind(this);
+      this.stopStopWatch = this.stopStopWatch.bind(this);
+      this.resetStopWatch = this.resetStopWatch.bind(this);
+  }
+
+  drawStopWatchInitialState(){
     this.generateClock(this.canvasMillisecondsClock, 'canvasMillisecondsClock');
     this.generateClock(this.canvasSecondsClock, 'canvasSecondsClock');
     this.generateClock(this.canvasMinutesClock, 'canvasMinutesClock');
     this.generateClock(this.canvasHoursClock, 'canvasHoursClock');
+  }
 
-    this.stopButton = document.querySelector('button#stop');
-
-    this.intervalsIDs ={
-
-    }
-
+  startStopWatch(){
     this.intervalsIDs.canvasMillisecondsClock = setInterval(()=>{
       this.generateClock(this.canvasMillisecondsClock, 'canvasMillisecondsClock');
     },1);  // 1 milli second
@@ -97,16 +115,22 @@ class View{
     this.intervalsIDs.canvasHoursClock = setInterval(()=>{
       this.generateClock(this.canvasMinutesClock, 'canvasMinutesClock');
     },3600 * 1000);  // 1 Hour
+  }
 
-
-
-    this.stopButton.addEventListener('click', ()=>{
+  stopStopWatch(){    
       clearInterval( this.intervalsIDs.canvasMillisecondsClock);
       clearInterval( this.intervalsIDs.canvasSecondsClock);
       clearInterval( this.intervalsIDs.canvasMinutesClock);
-      clearInterval( this.intervalsIDs.canvasHoursClock);
-    });    
+      clearInterval( this.intervalsIDs.canvasHoursClock);    
+  }
 
+  resetStopWatch(){
+    // console.log('resetStopWatch() ', this.metadata);
+    this.metadata.canvasHoursClock.elapsedTime=0;
+    this.metadata.canvasMinutesClock.elapsedTime=0;
+    this.metadata.canvasSecondsClock.elapsedTime=0;
+    this.metadata.canvasMillisecondsClock.elapsedTime=0;
+    this.drawStopWatchInitialState();
   }
 
   generateClock(canvas, clockType='canvasMillisecondsClock'){
